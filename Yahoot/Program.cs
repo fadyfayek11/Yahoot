@@ -33,5 +33,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapHub<YahootHub>("/yahootHub");
+app.MapHub<YahootHub>("/yahoot");
 app.Run();

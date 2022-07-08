@@ -16,13 +16,14 @@
 </div>
 <div class="row col-12">
     <div class="col-3"></div>
-    <form asp-controller="Home" asp-action="Enter" class="col-6 mt-5 enter-pin-form__Form-sc-z047z0-0 cCHhAQ">
+    <form id="enter-form" asp-controller="Home" asp-action="Enter" class="col-6 mt-5 enter-pin-form__Form-sc-z047z0-0 cCHhAQ">
         <input name="gameId" type="tel" placeholder="Game PIN" id="game-input" data-functional-selector="game-pin-input" class="sc-fWSCIC hEgquS mt-1 mb-1" autocomplete="off" dir="ltr" value="">
-        <button class="sc-jJEJSO dgSUnZ enter-pin-form__SubmitButton-sc-z047z0-1 haQHWh mt-1 mb-1" type="submit" data-functional-selector="join-game-pin">
+        <button id="gameCode" class="sc-jJEJSO dgSUnZ enter-pin-form__SubmitButton-sc-z047z0-1 haQHWh mt-1 mb-1" type="submit" data-functional-selector="join-game-pin">
             Enter
         </button>
     </form>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

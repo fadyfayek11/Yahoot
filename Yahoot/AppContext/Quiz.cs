@@ -7,7 +7,9 @@ namespace Yahoot.AppContext;
 public class Quiz
 {
     [Key] public int Id { get; set; }
+    [Display(Name = "Name")]
     public string QuizName { get; set; }
+    [Display(Name = "Code")]
     public string QuizCode { get; set; }
     public virtual ICollection<User> Users { get; set; }
     public virtual ICollection<Question> Questions { get; set; }

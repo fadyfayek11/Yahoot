@@ -1,0 +1,139 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background: rgb(70, 23, 143) none repeat scroll 0% 0%;
+    color: white;
+}
+.OpVJY {
+    position: fixed;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.1;
+    min-width: 75vmin;
+    min-height: 75vmin;
+    bottom: -15vmin;
+    right: -15vmin;
+    z-index: -1;
+}
+.hHwuuw {
+    text-align: center;
+}
+.iUmJVW {
+    position: fixed;
+    background-color: rgb(0, 0, 0);
+    transform: rotate(45deg);
+    opacity: 0.1;
+    top: -15vmin;
+    left: -15vmin;
+    min-width: 75vmin;
+    min-height: 75vmin;
+    z-index: -1;
+}
+.cCHhAQ {
+    background-color: rgb(255, 255, 255);
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 4px;
+}
+.haQHWh {
+    font-size: 1rem;
+}
+.dgSUnZ {
+    width: 100%;
+    margin: 0px;
+    border: 0px none;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: bottom;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px -4px inset;
+    background: rgb(51, 51, 51) none repeat scroll 0% 0%;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 19px;
+    text-align: center;
+    text-decoration: none;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 0px 16px 4px;
+    position: relative;
+    font-family: "Montserrat", "Noto Sans Arabic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.hEgquS.hEgquS {
+    min-height: 2.375rem;
+    max-height: 48px;
+    line-height: 2.375rem;
+    text-align: center;
+    max-width: 100%;
+    min-width: 6.25rem;
+    color: rgb(51, 51, 51);
+    outline: currentcolor none medium;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.cCHhAQ > input {
+    width: 100% !important;
+}
+.dziOkl:hover, .dziOkl:focus {
+    background-color: rgb(235, 235, 235);
+}
+
+@media screen and (max-width: 1000px), screen and (max-height: 1000px) {
+    .cnNgKW {
+        padding: 0px 1rem 0.25rem;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px -0.25rem 0px 0px inset, rgba(0, 0, 0, 0.15) 0px 2px 4px;
+        font-size: 1.2rem;
+    }
+}
+.cnNgKW {
+    line-height: normal;
+    min-height: 2.5rem;
+    height: 4vmin;
+    font-size: 1.67vmin;
+    margin: 0px 0px 8px 8px;
+    border-radius: 4px;
+    padding: 0px 1.6vmin 0.4vmin;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px -0.4vmin 0px 0px inset, rgba(0, 0, 0, 0.15) 0px 2px 4px;
+}
+
+.dziOkl {
+    font-size: 38px !important;
+    font-family: cairo;
+    width: 59%;
+    margin: 0px;
+    border: 0px none;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: bottom;
+    background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border-radius: 4px;
+    font-family: "Montserrat", "cairo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    min-width: 42px;
+    min-height: 42px;
+    height: 42px;
+    padding: 0px 16px 4px;
+    line-height: 42px;
+    position: relative;
+}

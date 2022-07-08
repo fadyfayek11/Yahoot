@@ -20,11 +20,18 @@
         <a class="sc-gWHgXt dziOkl enter-button__Button-sc-3mpvij-0 cnNgKW" asp-action="Edit" asp-route-id="@Model?.Id">Start</a>
     </div>
 </div>
-<div class="row col-12">
+<div class="row col-12" style="margin-top: 7%;">
     <ul id="players" style="text-align: center;">
-       @* <li style="list-style: none; background-color: #a81818; display: inline; margin: 11px; font-weight: bold; border-radius: 9px; padding: 12px; font-size: 29px;">
-            
-        </li>*@
+        @if (Model?.Users.Count != 0)
+        {
+            foreach (var user in Model?.Users!)
+            {
+                <li onclick="remove(this)" style="cursor: not-allowed;list-style: none; background-color: #a81818; display: inline; margin: 11px; font-weight: bold; border-radius: 9px; padding: 12px; font-size: 29px;">
+                    @user.Name
+                </li>
+            }
+        }
+        
     </ul>
 </div>
 

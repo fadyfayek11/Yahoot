@@ -3,36 +3,21 @@
 
 // Write your JavaScript code
 
-"use strict";
-var connection = new signalR.HubConnectionBuilder().withUrl("/yahoot").build();
-
-
-connection.start().then(result => {
-    console.log("SignalR is now connected");
-});
-
-connection.on("sendJoinMessageToAdmin", function (message) {
-    var li = document.createElement("li");
+function remove(elem) {
+    elem.parentNode.removeChild(elem);
     var count = document.getElementById("counter-player");
-
-    li.style.listStyle = "none";
-    li.style.backgroundColor = "#a81818";
-    li.style.display = "inline-block";
-    li.style.margin = "11px";
-    li.style.fontWeight = "bold";
-    li.style.fontSize = "29px";
-    li.style.borderRadius = "9px";
-    li.style.padding = "12px";
-    document.getElementById("players").appendChild(li);
-
-    count.innerText = parseInt(count.innerText)+1;
-    li.textContent = `${message}`;
-});
-
-document.getElementById("join-game").addEventListener("click", function (event) {
-    var name = document.getElementById("student-name").value;
-    connection.invoke("SendJoinMessageToAdmin", name).catch(function (err) {
-        return console.error(err.toString());
+    count.innerText = parseInt(count.innerText) - 1;
+    var name = elem.innerText;
+    $.ajax({
+        type: "POST",
+        url: '/Admin/DeleteUser?name='+name,
+        contentType: 'application/json; charset=utf-8',
+        data: name ,
+        dataType: 'json',
+        success: function (msg) {
+        },
+        error: function (req, status, error) {
+           
+        }
     });
-    event.preventDefault();
-});
+}

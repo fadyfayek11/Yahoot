@@ -27,7 +27,17 @@ namespace Yahoot.Controllers
 
             return View(quiz);
         }
-
+        //Delete user
+        [HttpPost]
+        public async Task<ActionResult> DeleteUser(string name)
+        {
+            name = name.Trim();
+            var user = await _context.Users.FirstOrDefaultAsync(u=>u.Name == name);
+            if (user is null) return Ok();
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
         // GET: AdminController/Create
         public ActionResult Create()
         {

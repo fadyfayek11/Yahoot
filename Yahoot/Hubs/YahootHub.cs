@@ -4,9 +4,13 @@ namespace Yahoot.Hubs;
 
 public class YahootHub : Hub
 {
-    public Task SendJoinMessageToAdmin(string message)
+    public async Task SendJoinMessageToAdmin(string message)
     {
-        return Clients.All.SendAsync("SendJoinMessageToAdmin", message);
+        await Clients.All.SendAsync("SendJoinMessageToAdmin", message);
     }
+    //public Task AdminSend(int questionId)
+    //{
+    //    await Clients.All.SendAsync("SendJoinMessageToAdmin", message);
+    //}
     
 }

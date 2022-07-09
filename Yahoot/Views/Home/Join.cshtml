@@ -11,16 +11,60 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Yahoot.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/4a8137dc1d.js" crossorigin="anonymous"></script>
 </head>
-<div class="sc-dwcuIR iUmJVW"></div>
-<div class="sc-jtHMlw OpVJY"></div>
 
-<div class="row col-12" style="margin-top: 30%">
-    <h1 class="text-center mb-1" style="font-family: cairo;font-weight: bold;font-size: 40px;">نـــورت يـا</h1>
-    <h1 class="text-center mb-5" style="font-family: cairo;font-weight: bold;font-size: 40px;">@Model.Name</h1>
-    <h3 class="text-center mb-2" style="font-size: 30px;font-weight: initial;font-family: cairo;">!! استني اخواتك لما يدخلوا متستعجلش</h3>
-    <h5 class="text-center">Loading ....</h5>
+<div id="join-section" style="display: none">
+    <div class="sc-dwcuIR iUmJVW"></div>
+    <div class="sc-jtHMlw OpVJY"></div>
+
+    <div class="text-center">
+        <h1 class="display-4" style="font-weight: inherit;font-size: 90px;margin-top: 35%;"><i class="fa-solid fa-chess"></i>Quizzical</h1>
+    </div>
+    <div class="row col-12" style="margin-top: 30%">
+        <h1 class="text-center mb-1" style="font-family: cairo;font-weight: bold;font-size: 40px;">نـــورت يـا</h1>
+        <h1 class="text-center mb-5" style="font-family: cairo;font-weight: bold;font-size: 40px;">@Model.Name</h1>
+        <h3 class="text-center mb-2" style="font-size: 30px;font-weight: initial;font-family: cairo;">!! استني اخواتك لما يدخلوا متستعجلش</h3>
+        <h5 class="text-center">Loading ....</h5>
+    </div>
 </div>
+<div class="row col-12" id="question-section" style="height: 90%;margin-top: 4%;margin-left: 0px;">
+    <div class="col-6" style="height: 50%;">
+        <div style="text-align: center;" class="col-12">
+            <h1 class="text-center" style="padding: 25px;background-color: #a81818; border-radius: 10px; margin-bottom: 7%; text-align: center !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #6f1c1c; cursor: pointer;height: 100%;">
+                <i class="fa-solid fa-play" style="transform: rotate(270deg);margin-top: 37%;font-size: 62px;"></i>
+            </h1>
+        </div>
+        <div class="col-12" style="">
+            <h1 class="text-center" style="padding: 25px;background-color: #ccbe48; border-radius: 10px; text-align: center !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #7d731e; cursor: pointer;height: 100%;">
+                <i class="fa-solid fa-circle" style="color: white;margin-top: 40%;font-size: 62px;"></i>
+            </h1>
+        </div>
+    </div>
+    <div class="col-6" style="height: 50%;">
+        <div class="col-12">
+            <h1 class="text-center" style="padding: 25px;background-color: #334db5; border-radius: 10px; margin-bottom: 7%; text-align:  center !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #2f4395; cursor: pointer;height: 100%;">
+                <i class="fa-solid fa-diamond" style="color: white;margin-top: 40%;font-size: 62px;"></i>
+            </h1>
+        </div>
+        <div class="col-12">
+            <h1 onclick="alert(this.id);" class="text-center" style="padding: 25px;background-color: #4a7d15c2; border-radius: 10px;  text-align: center !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #658445; cursor: pointer;height: 100%;">
+                <i class="fa-solid fa-square" style="color: white;margin-top: 40%;font-size: 62px;"></i>
+            </h1>
+        </div>
+    </div>
+    <input id="question-id" value="" hidden="">
+</div>
+<footer style="background-color: white;color: black;position: absolute;bottom: 0;width: 100%;border-radius: 2px;">
+    <div class="row col-12">
+        <div class="col-6">
+            <h6 style="font-family: cairo;font-weight: bold;text-align: left;font-size: 24px;margin: 0px;margin-left: 10px;">@Model.Name</h6>
+        </div> 
+        <div class="col-6">
+            <h6 style="font-family: cairo;font-weight: bold;text-align: right;font-size: 24px;margin: 0px;margin-right: 10px;">Your Score:<span id="score" style="font-weight: bold">0</span></h6>
+        </div>
+    </div>
+</footer>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

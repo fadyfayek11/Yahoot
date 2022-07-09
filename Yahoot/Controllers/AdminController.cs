@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Yahoot.AppContext;
+using Yahoot.Hubs;
 using Yahoot.Models;
 
 namespace Yahoot.Controllers
@@ -8,10 +10,11 @@ namespace Yahoot.Controllers
     public class AdminController : Controller
     {
         private readonly AppDbContext _context;
-
-        public AdminController(AppDbContext context)
+        private readonly IHubContext<YahootHub> _hub;
+        public AdminController(AppDbContext context, IHubContext<YahootHub> hub)
         {
             _context = context;
+            _hub = hub;
         }
         
         // GET: AdminController
@@ -43,11 +46,26 @@ namespace Yahoot.Controllers
         public static int CurrentQuestion;
         public async Task<ActionResult> QuizQuestion(int id,int questionId)
         {
-            var quizQuestion = await _context.Questions.AsNoTracking().Include(q=>q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0? q.Id == 1:q.Id == questionId+1);
-            if (quizQuestion is null) return Ok();
+            if (questionId == 0)
+            {
+                var question = await _context.Questions.FirstOrDefaultAsync(q => q.QuizId == id);
+                if (question != null) questionId = question.Id;
+                CurrentQuestion = 0;
+            }
+            await _hub.Clients.All.SendAsync("AdminSendQuestionId",questionId);
+            var quizQuestion = await _context.Questions.AsNoTracking().Include(q=>q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && q.Id == questionId+1);
+            
+            var total =  _context.Questions.Count(t => t.QuizId == id);
+            if (quizQuestion == null)
+            {
+                CurrentQuestion = 0;
+                return View(new QuestionViewModel(0, 0, null, null, 0, 0));
+            }
+            CurrentQuestion+=1;
             var dto = new QuestionViewModel(quizQuestion.QuizId, quizQuestion.Id, quizQuestion.QuestionName,
-                quizQuestion.Answers);
+                quizQuestion.Answers,total,CurrentQuestion);
             return View(dto);
+
         }
 
         // GET: AdminController/Create

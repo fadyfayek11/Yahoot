@@ -4,27 +4,82 @@
     ViewData["Title"] = "QuizQuestion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<style>
+    body {
+        background-color:white ;
+        color: black;
+    }
 
-<h1>QuizQuestion</h1>
+</style>*@
 
-<div>
-    <h4>Question</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Question)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Question)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuizId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuestionId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.QuestionId">Next</a> 
-</div>
+@if (@Model.Total == 0)
+{
+    
+    <div>
+        <h4>Question</h4>
+        <hr />
+        <h1 class="text-center">No data yet</h1>
+    </div>
+}
+else
+{
+    <div class="row col-12">
+        <div class="col-9">
+            <h4>Question</h4>
+            <h5 style="font-weight: bold;margin-left: 2%;">@Model.Current of @Model.Total</h5>
+        </div>
+        <div class="col-3">
+            <a class="sc-gWHgXt dziOkl enter-button__Button-sc-3mpvij-0 cnNgKW" style="font-size: 28px !important;background-color: #605ccd;color: white;" asp-action="QuizQuestion" asp-route-questionId="@Model?.QuestionId">Next</a>
+        </div>
+        <hr/>
+    </div>
+    <div class="row col-12" style="margin-top: 5%;">
+        <h1 class="text-center" style="background-color: #fff;border-radius: 5px;padding: 9px;box-shadow: 1px 1px 6px -1px;font-weight: revert-layer;color: #000000c4;">@Model.Question</h1>
+    </div>
+    <hr/>
+    
+    <div class="row col-12 text-center" style="margin-top: 5%;">
+        <div class="col-3"><h2 id="red-answer" style="font-weight: bold">0 <i class="fa-solid fa-play" style="transform: rotate(270deg);color: #a81818"></i></h2></div>
+        <div class="col-3"><h2 id="yellow-answer" style="font-weight: bold">0 <i class="fa-solid fa-circle" style="color: #ccbe48"></i></h2></div>
+        <div class="col-3"><h2 id="blue-answer" style="font-weight: bold">0 <i class="fa-solid fa-diamond" style="color: #334db5"></i></h2></div>
+        <div class="col-3"><h2 id="grean-answer" style="font-weight: bold">0 <i class="fa-solid fa-square" style="color: #4a7d15c2"></i></h2></div>
+    </div>
+        
+    <div class="col-12 text-center" style="margin-top: 5%;margin-bottom: 5%;display: block ruby">
+        <i class="fa-solid fa-users" style="font-size: 30px;"></i>      
+        <h2 id="total-answer" style="font-weight: bold">0</h2>
+    </div>
+
+    <hr/>
+    <div class="row col-12">
+        <div class="col-6">
+            <div class="col-12">
+                <h1 class="text-center"style="padding: 25px;background-color: #a81818; border-radius: 10px; margin-bottom: 3%; text-align: right !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #6f1c1c; cursor: pointer;">
+                    @Model.Answers.ElementAt(0).AnswerName
+                    <i class="fa-solid fa-play" style="transform: rotate(270deg);"></i>
+                 </h1>
+            </div>
+            <div class="col-12">
+                <h1 class="text-center" style="padding: 25px;background-color: #ccbe48; border-radius: 10px;margin-bottom: 3%; text-align: right !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #7d731e; cursor: pointer;">
+                    @Model.Answers.ElementAt(1).AnswerName
+                    <i class="fa-solid fa-circle"  style="color: white"></i>
+                </h1>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="col-12">
+                <h1 class="text-center" style="padding: 25px;background-color: #334db5; border-radius: 10px; margin-bottom: 3%; text-align: right !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #2f4395; cursor: pointer;">
+                    @Model.Answers.ElementAt(2).AnswerName
+                    <i class="fa-solid fa-diamond"></i>
+                </h1>
+            </div>
+            <div class="col-12">
+                <h1 class="text-center" style="padding: 25px;background-color: #4a7d15c2; border-radius: 10px; margin-bottom: 3%; text-align: right !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #658445; cursor: pointer;">
+                    @Model.Answers.ElementAt(3).AnswerName
+                    <i class="fa-solid fa-square" style="color: white"></i>
+                </h1>
+            </div>
+        </div>
+    </div>
+}
+

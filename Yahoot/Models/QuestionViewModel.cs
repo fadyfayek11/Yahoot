@@ -3,5 +3,5 @@ using Yahoot.AppContext;
 namespace Yahoot.Models;
 
 
-public record QuestionViewModel(int QuizId,int QuestionId,string Question, ICollection<Answer> Answers);
+public record QuestionViewModel(int QuizId,int QuestionId,string Question, ICollection<Answer> Answers,int Total,int Current);
 

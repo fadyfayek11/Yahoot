@@ -27,7 +27,7 @@
         {
             foreach (var user in Model?.Users!)
             {
-                <li onclick="remove(this)" style="cursor: not-allowed;list-style: none; background-color: #381273; display: inline; margin: 11px; font-weight: bold; border-radius: 6px; padding: 12px; font-size: 29px;">
+                <li onclick="remove(this)" style="cursor: not-allowed;list-style: none; background-color: #381273; display: inline-block; margin: 11px; font-weight: bold; border-radius: 6px; padding: 12px; font-size: 29px;">
                     @user.Name
                 </li>
             }

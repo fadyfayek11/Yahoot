@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/4a8137dc1d.js" crossorigin="anonymous"></script>
 </head>
 
-<div id="join-section" style="display: none">
+<div id="join-section">
     <div class="sc-dwcuIR iUmJVW"></div>
     <div class="sc-jtHMlw OpVJY"></div>
 
@@ -28,7 +28,7 @@
         <h5 class="text-center">Loading ....</h5>
     </div>
 </div>
-<div class="row col-12" id="question-section" style="height: 90%;margin-top: 4%;margin-left: 0px;">
+<div class="row col-12" id="question-section" style="height: 90%;margin-top: 4%;margin-left: 0px;display: none">
     <div class="col-6" style="height: 50%;">
         <div style="text-align: center;" class="col-12">
             <h1 class="text-center" style="padding: 25px;background-color: #a81818; border-radius: 10px; margin-bottom: 7%; text-align: center !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #6f1c1c; cursor: pointer;height: 100%;">
@@ -48,12 +48,12 @@
             </h1>
         </div>
         <div class="col-12">
-            <h1 onclick="alert(this.id);" class="text-center" style="padding: 25px;background-color: #4a7d15c2; border-radius: 10px;  text-align: center !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #658445; cursor: pointer;height: 100%;">
+            <h1 class="text-center" style="padding: 25px;background-color: #4a7d15c2; border-radius: 10px;  text-align: center !important; color: white; font-weight: bold; box-shadow: 0px 6px 0px 0px #658445; cursor: pointer;height: 100%;">
                 <i class="fa-solid fa-square" style="color: white;margin-top: 40%;font-size: 62px;"></i>
             </h1>
         </div>
     </div>
-    <input id="question-id" value="" hidden="">
+    <input id="question-id" value="0" hidden="">
 </div>
 <footer style="background-color: white;color: black;position: absolute;bottom: 0;width: 100%;border-radius: 2px;">
     <div class="row col-12">
@@ -61,7 +61,7 @@
             <h6 style="font-family: cairo;font-weight: bold;text-align: left;font-size: 24px;margin: 0px;margin-left: 10px;">@Model.Name</h6>
         </div> 
         <div class="col-6">
-            <h6 style="font-family: cairo;font-weight: bold;text-align: right;font-size: 24px;margin: 0px;margin-right: 10px;">Your Score:<span id="score" style="font-weight: bold">0</span></h6>
+            <h6 style="font-family: cairo;font-weight: bold;text-align: right;font-size: 24px;margin: 0px;margin-right: 10px;" id="score_@Model.Name">0</h6>
         </div>
     </div>
 </footer>

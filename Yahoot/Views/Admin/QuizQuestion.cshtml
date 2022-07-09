@@ -1,0 +1,30 @@
+﻿@model Yahoot.Models.QuestionViewModel
+
+@{
+    ViewData["Title"] = "QuizQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>QuizQuestion</h1>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Question)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Question)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QuizId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QuestionId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.QuestionId">Next</a> 
+</div>

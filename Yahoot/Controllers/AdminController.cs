@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Yahoot.AppContext;
+using Yahoot.Models;
 
 namespace Yahoot.Controllers
 {
@@ -38,6 +39,17 @@ namespace Yahoot.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+        // GET: AdminController/Create
+        public static int CurrentQuestion;
+        public async Task<ActionResult> QuizQuestion(int id,int questionId)
+        {
+            var quizQuestion = await _context.Questions.AsNoTracking().Include(q=>q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0? q.Id == 1:q.Id == questionId+1);
+            if (quizQuestion is null) return Ok();
+            var dto = new QuestionViewModel(quizQuestion.QuizId, quizQuestion.Id, quizQuestion.QuestionName,
+                quizQuestion.Answers);
+            return View(dto);
+        }
+
         // GET: AdminController/Create
         public ActionResult Create()
         {

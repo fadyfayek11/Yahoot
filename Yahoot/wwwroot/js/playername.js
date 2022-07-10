@@ -42,7 +42,7 @@ connection.on("AdminSendQuestionId", function (qId,quizId) {
 
     for (var i = 0; i < 4; i++) {
         var name = "student-answer-" + i;
-        document.getElementById(name).style.display = " ";
+        document.getElementById(name).style.display = "";
     }
 });
 connection.on("AdminSendTheRightAnswer", function (index) {

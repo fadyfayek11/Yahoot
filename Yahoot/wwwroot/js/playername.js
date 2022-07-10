@@ -31,6 +31,12 @@ connection.on("AdminSendQuestionId", function (qId,quizId) {
     var questionSection = document.getElementById("question-section");
     questionSection.style.display = "";
 
+    for (var i = 0; i < 4; i++) {
+        var name = "student-answer-" + i;
+        document.getElementById(name).style.display = "";
+        
+    }
+
     var questionId = document.getElementById("question-id");
     questionId.value = qId.toString();
 

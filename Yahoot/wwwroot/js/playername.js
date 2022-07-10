@@ -25,7 +25,7 @@ connection.on("sendJoinMessageToAdmin", function (message) {
     count.innerText = parseInt(count.innerText) + 1;
     li.textContent = `${message}`;
 });
-connection.on("AdminSendQuestionId", function (qId) {
+connection.on("AdminSendQuestionId", function (qId,quizId) {
     document.body.style.backgroundColor = "white";
 
     var questionSection = document.getElementById("question-section");
@@ -34,10 +34,12 @@ connection.on("AdminSendQuestionId", function (qId) {
     var questionId = document.getElementById("question-id");
     questionId.value = qId.toString();
 
+    var quiz = document.getElementById("quiz-id");
+    quiz.value = quizId.toString();
+
     var joinSection = document.getElementById("join-section");
     joinSection.style.display = "none";
 
-    alert(questionId.value);
 });
 
 document.getElementById("join-game").addEventListener("click", function (event) {

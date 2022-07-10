@@ -53,7 +53,7 @@ namespace Yahoot.Controllers
                 if (question != null)  qId = question.Id;
                 CurrentQuestion = 0;
             }
-            await _hub.Clients.All.SendAsync("AdminSendQuestionId",qId==0?questionId:qId);
+            await _hub.Clients.All.SendAsync("AdminSendQuestionId",qId==0?questionId:qId,id);
             var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0 ? q.Id == 1 : q.Id == questionId + 1);
 
             var total =  _context.Questions.Count(t => t.QuizId == id);
@@ -68,7 +68,15 @@ namespace Yahoot.Controllers
             return View(dto);
 
         }
-
+        
+        //Admin Show the right answer 
+        public async Task<ActionResult> ShowCorrectAnswer(int quizId,int questionId)
+        {
+            var answer = await _context.Answers.AsNoTracking().Include(q => q.Question).Where(q => q.Question.QuizId == quizId &&  q.QuestionId == questionId).ToListAsync();
+            var index = answer.Select(x => x.IsCorrect).ToList();
+            var i = index.IndexOf(true);
+            return Ok(new{success = true,data=$"{i}"});
+        }
         // GET: AdminController/Create
         public ActionResult Create()
         {

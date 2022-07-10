@@ -21,3 +21,8 @@ function remove(elem) {
         }
     });
 }
+
+function SubmitAnswer(questionIndex,userId) {
+    alert("your choice is :"+questionIndex);
+}
+  

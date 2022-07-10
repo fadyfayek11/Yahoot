@@ -51,6 +51,15 @@ namespace Yahoot.Controllers
             await _context.SaveChangesAsync();
             return View(user);
         }
+
+        public async Task<ActionResult> CheckCorrectAnswer(StudentAnswer model)
+        {
+            var answer = await _context.Answers.AsNoTracking().Include(q => q.Question).Where(q => q.Question.QuizId == model.QuizId && q.QuestionId == model.QuestionId).ToListAsync();
+            var index = answer.Select(x => x.IsCorrect).ToList();
+            var i = index.IndexOf(true);
+            if (i == model.Index) return Ok(new { success = true });
+            return Ok(new { success = false });
+        }
         public IActionResult Privacy()
         {
             return View();

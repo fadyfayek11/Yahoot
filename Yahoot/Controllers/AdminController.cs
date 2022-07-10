@@ -53,7 +53,7 @@ namespace Yahoot.Controllers
                 if (question != null)  qId = question.Id;
                 CurrentQuestion = 0;
             }
-            await _hub.Clients.All.SendAsync("AdminSendQuestionId",qId==0?questionId:qId,id);
+            await _hub.Clients.All.SendAsync("AdminSendQuestionId",qId==0?questionId+1:qId,id);
             var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0 ? q.Id == 1 : q.Id == questionId + 1);
 
             var total =  _context.Questions.Count(t => t.QuizId == id);

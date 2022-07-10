@@ -27,15 +27,9 @@ connection.on("sendJoinMessageToAdmin", function (message) {
 });
 connection.on("AdminSendQuestionId", function (qId,quizId) {
     document.body.style.backgroundColor = "white";
-
+    debugger;
     var questionSection = document.getElementById("question-section");
     questionSection.style.display = "";
-
-    for (var i = 0; i < 4; i++) {
-        var name = "student-answer-" + i;
-        document.getElementById(name).style.display = "";
-        
-    }
 
     var questionId = document.getElementById("question-id");
     questionId.value = qId.toString();
@@ -46,6 +40,10 @@ connection.on("AdminSendQuestionId", function (qId,quizId) {
     var joinSection = document.getElementById("join-section");
     joinSection.style.display = "none";
 
+    for (var i = 0; i < 4; i++) {
+        var name = "student-answer-" + i;
+        document.getElementById(name).style.display = " ";
+    }
 });
 connection.on("AdminSendTheRightAnswer", function (index) {
     console.log(index);

@@ -22,7 +22,33 @@ function remove(elem) {
     });
 }
 
-function SubmitAnswer(questionIndex,userId) {
-    alert("your choice is :"+questionIndex);
+function SubmitAnswer(answerIndex) {
+
+    var model = {
+        "Index": answerIndex,
+        "QuizId": $("#quiz-id").val(),
+        "QuestionId": $("#question-id").val(),
+        "UserId":$("#user-id").val()
+    }
+    console.log(model);
+    $.ajax({
+        url: '/Home/CheckCorrectAnswer',
+        type: 'POST',
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded",
+        data: model,
+        success: function (data) {
+            console.log(data);
+            if (data.success) {
+                swal("!عاش", "برااااافووو علييييييك", "success");
+            } else {
+                swal("ينفع كدا؟", "!غلط يا استاذ قولنا نركز", "error");
+            }
+            
+        },
+        error: function () {
+        }
+    });
+
 }
   

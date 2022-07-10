@@ -61,9 +61,7 @@ function onTimesUp() {
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         success: function (data) {
-            console.log(data);
             for (var i = 0; i < 4; i++) {
-                debugger;
                 if (data.data !== i.toString()) {
                     $("#admin-answer-" + i).css('background-color', '#fff');
                 }

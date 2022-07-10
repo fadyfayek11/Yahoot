@@ -41,6 +41,15 @@ connection.on("AdminSendQuestionId", function (qId,quizId) {
     joinSection.style.display = "none";
 
 });
+connection.on("AdminSendTheRightAnswer", function (index) {
+    console.log(index);
+    for (var i = 0; i < 4; i++) {
+        if (index !== i) {
+            var name = "student-answer-" + i;
+            document.getElementById(name).style.display = "none";
+        }
+    }
+});
 
 document.getElementById("join-game").addEventListener("click", function (event) {
     var name = document.getElementById("student-name").value;

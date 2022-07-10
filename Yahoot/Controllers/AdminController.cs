@@ -75,6 +75,7 @@ namespace Yahoot.Controllers
             var answer = await _context.Answers.AsNoTracking().Include(q => q.Question).Where(q => q.Question.QuizId == quizId &&  q.QuestionId == questionId).ToListAsync();
             var index = answer.Select(x => x.IsCorrect).ToList();
             var i = index.IndexOf(true);
+            await _hub.Clients.All.SendAsync("AdminSendTheRightAnswer", i);
             return Ok(new{success = true,data=$"{i}"});
         }
         // GET: AdminController/Create

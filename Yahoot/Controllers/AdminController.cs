@@ -46,15 +46,16 @@ namespace Yahoot.Controllers
         public static int CurrentQuestion;
         public async Task<ActionResult> QuizQuestion(int id,int questionId)
         {
+            int qId = 0;
             if (questionId == 0)
             {
                 var question = await _context.Questions.FirstOrDefaultAsync(q => q.QuizId == id);
-                if (question != null) questionId = question.Id;
+                if (question != null)  qId = question.Id;
                 CurrentQuestion = 0;
             }
-            await _hub.Clients.All.SendAsync("AdminSendQuestionId",questionId);
-            var quizQuestion = await _context.Questions.AsNoTracking().Include(q=>q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && q.Id == questionId+1);
-            
+            await _hub.Clients.All.SendAsync("AdminSendQuestionId",qId==0?questionId:qId);
+            var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0 ? q.Id == 1 : q.Id == questionId + 1);
+
             var total =  _context.Questions.Count(t => t.QuizId == id);
             if (quizQuestion == null)
             {

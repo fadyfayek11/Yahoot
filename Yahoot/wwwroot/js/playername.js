@@ -11,12 +11,12 @@ connection.on("sendJoinMessageToAdmin", function (message) {
     var count = document.getElementById("counter-player");
 
     li.style.listStyle = "none";
-    li.style.backgroundColor = "#a81818";
+    li.style.backgroundColor = "#381273";
     li.style.display = "inline-block";
     li.style.margin = "11px";
     li.style.fontWeight = "bold";
     li.style.fontSize = "29px";
-    li.style.borderRadius = "9px";
+    li.style.borderRadius = "6px";
     li.style.padding = "12px";
     li.style.cursor = "not-allowed";
     li.setAttribute("onclick", "remove(this)");
@@ -24,6 +24,20 @@ connection.on("sendJoinMessageToAdmin", function (message) {
 
     count.innerText = parseInt(count.innerText) + 1;
     li.textContent = `${message}`;
+});
+connection.on("AdminSendQuestionId", function (qId) {
+    document.body.style.backgroundColor = "white";
+
+    var questionSection = document.getElementById("question-section");
+    questionSection.style.display = "";
+
+    var questionId = document.getElementById("question-id");
+    questionId.value = qId.toString();
+
+    var joinSection = document.getElementById("join-section");
+    joinSection.style.display = "none";
+
+    alert(questionId.value);
 });
 
 document.getElementById("join-game").addEventListener("click", function (event) {

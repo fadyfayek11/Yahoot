@@ -39,6 +39,7 @@ public class Degree
     [ForeignKey("Quiz")] public int QuizId { get; set; }
     [ForeignKey("User")] public Guid UserId { get; set; }
     public int UserDegree { get; set; }
+    public DateTime Time { get; set; }
     public virtual User User { get; set; }
     public virtual Quiz Quiz { get; set; }
 }

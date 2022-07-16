@@ -21,7 +21,7 @@
 <div class="row col-12">
     <div class="col-1"></div>
     <form id="user-join" asp-controller="Home" asp-action="Join" style="margin-left: 11%;" class="col-10 mt-5 enter-pin-form__Form-sc-z047z0-0 cCHhAQ">
-        <input required="" name="yourName" type="text" placeholder="أسمك ايه ياصديقي؟" id="student-name" data-functional-selector="game-pin-input" class="sc-fWSCIC hEgquS mt-1 mb-1" autocomplete="off" dir="ltr" value="">
+        <input name="yourName" type="text" placeholder="أسمك ايه ياصديقي؟" id="student-name" data-functional-selector="game-pin-input" class="sc-fWSCIC hEgquS mt-1 mb-1" autocomplete="off" dir="ltr" value="" required>
         <input hidden="" id="code" name="gameId" value="@Model.QuizCode" />
         <button id="join-game" class="sc-jJEJSO dgSUnZ enter-pin-form__SubmitButton-sc-z047z0-1 haQHWh mt-1 mb-1" type="submit" data-functional-selector="join-game-pin">
             !اوك, يلا بينا 
@@ -30,7 +30,9 @@
     <div class="col-1"></div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/playername.js" asp-append-version="true"></script>
+<script src="~/js/timer.js" asp-append-version="true"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

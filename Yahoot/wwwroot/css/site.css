@@ -14,7 +14,6 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
     background: rgb(70, 23, 143) none repeat scroll 0% 0%;
     color: white;
 }
@@ -115,7 +114,6 @@ body {
 .dziOkl {
     font-size: 38px !important;
     font-family: cairo;
-    width: 59%;
     margin: 0px;
     border: 0px none;
     cursor: pointer;

@@ -33,10 +33,9 @@ namespace Yahoot.Controllers
         }
         //Delete user
         [HttpPost]
-        public async Task<ActionResult> DeleteUser(string name)
+        public async Task<ActionResult> DeleteUser(string id)
         {
-            name = name.Trim();
-            var user = await _context.Users.FirstOrDefaultAsync(u=>u.Name == name);
+            var user = await _context.Users.FirstOrDefaultAsync(u=>u.Id == Guid.Parse(id));
             if (user is null) return Ok();
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
@@ -53,20 +52,21 @@ namespace Yahoot.Controllers
                 if (question != null)  qId = question.Id;
                 CurrentQuestion = 0;
             }
-            await _hub.Clients.All.SendAsync("AdminSendQuestionId",qId==0?questionId+1:qId,id);
             var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0 ? q.Id == 1 : q.Id == questionId + 1);
 
             var total =  _context.Questions.Count(t => t.QuizId == id);
             if (quizQuestion == null)
             {
                 CurrentQuestion = 0;
+                await _hub.Clients.All.SendAsync("AdminSendQuestionId", 0, id);
                 return View(new QuestionViewModel(0, 0, null, null, 0, 0));
             }
             CurrentQuestion+=1;
             var dto = new QuestionViewModel(quizQuestion.QuizId, quizQuestion.Id, quizQuestion.QuestionName,
                 quizQuestion.Answers,total,CurrentQuestion);
-            return View(dto);
 
+            await _hub.Clients.All.SendAsync("AdminSendQuestionId", qId == 0 ? questionId + 1 : qId, id);
+            return View(dto);
         }
         
         //Admin Show the right answer 
@@ -77,68 +77,6 @@ namespace Yahoot.Controllers
             var i = index.IndexOf(true);
             await _hub.Clients.All.SendAsync("AdminSendTheRightAnswer", i);
             return Ok(new{success = true,data=$"{i}"});
-        }
-        // GET: AdminController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AdminController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AdminController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AdminController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AdminController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AdminController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

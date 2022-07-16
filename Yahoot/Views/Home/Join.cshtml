@@ -10,15 +10,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/loader.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Yahoot.styles.css" asp-append-version="true" />
     <script src="https://kit.fontawesome.com/4a8137dc1d.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+<h1 class="text-center" style="color: black;margin-top: 10%;font-weight: bold;display: none;" id="message">استعد للي جاي ياحلو</h1>
+<div id="loader" style="display: none"></div>
 
 <div id="join-section">
     <div class="sc-dwcuIR iUmJVW"></div>
     <div class="sc-jtHMlw OpVJY"></div>
-
     <div class="text-center">
         <h1 class="display-4" style="font-weight: inherit;font-size: 90px;margin-top: 35%;"><i class="fa-solid fa-chess"></i>Quizzical</h1>
     </div>
@@ -57,6 +59,18 @@
     <input id="question-id" value="" hidden="">
     <input id="quiz-id" value="" hidden="">
     <input id="user-id" value="@Model.Id" hidden="">
+</div>
+<div id="finish-section" style="display: none">
+    <div class="sc-dwcuIR iUmJVW"></div>
+    <div class="sc-jtHMlw OpVJY"></div>
+    <div class="text-center">
+        <h1 class="display-4" style="font-weight: inherit;font-size: 90px;margin-top: 35%;"><i class="fa-solid fa-chess"></i>Quizzical</h1>
+    </div>
+    <div class="row col-12" style="margin-top: 5%">
+        <h1 class="text-center mb-1" style="font-family: cairo;font-weight: bold;font-size: 40px;">خلصنااااااا</h1>
+        <h3 class="text-center mb-2" style="font-size: 30px;font-weight: initial;font-family: cairo;">اياً كانت النتيجه ف انت شخص جميل واحنا بنحبك</h3>
+        <h4 class="text-center mb-2" style="font-size: 30px;font-weight: initial;font-family: cairo;">Byeeeeee</h4>
+    </div>
 </div>
 <footer style="background-color: white;color: black;position: absolute;bottom: 0;width: 100%;border-radius: 2px;box-shadow: 1px -1px 16px -1px;">
     <div class="row col-12">

@@ -25,34 +25,64 @@ connection.on("sendJoinMessageToAdmin", function (message) {
     count.innerText = parseInt(count.innerText) + 1;
     li.textContent = `${message}`;
 });
-connection.on("AdminSendQuestionId", function (qId,quizId) {
-    document.body.style.backgroundColor = "white";
-    debugger;
-    var questionSection = document.getElementById("question-section");
-    questionSection.style.display = "";
+connection.on("AdminSendQuestionId", function (qId, quizId) {
+    if (qId !== 0) {
+        var finishSection = document.getElementById("finish-section");
+        finishSection.style.display = "none";
 
-    var questionId = document.getElementById("question-id");
-    questionId.value = qId.toString();
+        var loader = document.getElementById("loader");
+        loader.style.display = "none";
+        var message = document.getElementById("message");
+        message.style.display = "none";
 
-    var quiz = document.getElementById("quiz-id");
-    quiz.value = quizId.toString();
+        document.body.style.backgroundColor = "white";
+        var questionSection = document.getElementById("question-section");
+        questionSection.style.display = "";
 
-    var joinSection = document.getElementById("join-section");
-    joinSection.style.display = "none";
+        var questionId = document.getElementById("question-id");
+        questionId.value = qId.toString();
 
-    for (var i = 0; i < 4; i++) {
-        var name = "student-answer-" + i;
-        document.getElementById(name).style.display = "";
+        var quiz = document.getElementById("quiz-id");
+        quiz.value = quizId.toString();
+
+        var joinSection = document.getElementById("join-section");
+        joinSection.style.display = "none";
+
+        for (var i = 0; i < 4; i++) {
+            var name = "student-answer-" + i;
+            document.getElementById(name).style.display = "";
+        }
+    } else {
+        document.body.style.backgroundColor = "#46178f";
+
+        var loader = document.getElementById("loader");
+        loader.style.display = "none";
+
+        var message = document.getElementById("message");
+        message.style.display = "none";
+
+        var questionSection = document.getElementById("question-section");
+        questionSection.style.display = "none";
+
+        var joinSection = document.getElementById("join-section");
+        joinSection.style.display = "none";
+
+        var finishSection = document.getElementById("finish-section");
+        finishSection.style.display = "";
     }
+   
 });
 connection.on("AdminSendTheRightAnswer", function (index) {
-    console.log(index);
+    debugger;
     for (var i = 0; i < 4; i++) {
-        if (index !== i) {
-            var name = "student-answer-" + i;
-            document.getElementById(name).style.display = "none";
-        }
+        var name = "student-answer-" + i;
+        document.getElementById(name).style.display = "none";
     }
+    var correctName = "student-answer-" + index;
+    var elem = document.getElementById(correctName);
+    elem.removeAttribute('onclick');
+    const correct = document.createElement("div");
+    correct.appendChild(elem);
 });
 
 document.getElementById("join-game").addEventListener("click", function (event) {

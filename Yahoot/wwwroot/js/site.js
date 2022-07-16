@@ -1,18 +1,13 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code
-
-function remove(elem) {
+﻿function remove(elem) {
     elem.parentNode.removeChild(elem);
     var count = document.getElementById("counter-player");
     count.innerText = parseInt(count.innerText) - 1;
-    var name = elem.innerText;
+    var id = elem.firstElementChild.value;
     $.ajax({
         type: "POST",
-        url: '/Admin/DeleteUser?name='+name,
+        url: '/Admin/DeleteUser?id='+id,
         contentType: 'application/json; charset=utf-8',
-        data: name ,
+        data: id ,
         dataType: 'json',
         success: function (msg) {
         },
@@ -23,12 +18,12 @@ function remove(elem) {
 }
 
 function SubmitAnswer(answerIndex) {
-
+    var userId = $("#user-id").val();
     var model = {
         "Index": answerIndex,
         "QuizId": $("#quiz-id").val(),
         "QuestionId": $("#question-id").val(),
-        "UserId":$("#user-id").val()
+        "UserId": $("#user-id").val()
     }
     console.log(model);
     $.ajax({
@@ -41,10 +36,16 @@ function SubmitAnswer(answerIndex) {
             console.log(data);
             if (data.success) {
                 swal("!عاش", "برااااافووو علييييييك", "success");
+                $("#score-" + userId).html(data.score);
+                $("#loader").show();
+                $("#message").show();
+                $("#question-section").hide();
             } else {
                 swal("ينفع كدا؟", "!غلط يا استاذ قولنا نركز", "error");
+                $("#loader").show();
+                $("#message").show();
+                $("#question-section").hide();
             }
-            
         },
         error: function () {
         }

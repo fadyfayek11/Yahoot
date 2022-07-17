@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Yahoot.AppContext;
@@ -11,12 +9,10 @@ namespace Yahoot.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context;
         private readonly IHubContext<YahootHub> _hub;
-        public HomeController(ILogger<HomeController> logger,AppDbContext context, IHubContext<YahootHub> hub)
+        public HomeController(AppDbContext context, IHubContext<YahootHub> hub)
         {
-            _logger = logger;
             _context = context;
             _hub = hub;
         }
@@ -80,21 +76,12 @@ namespace Yahoot.Controllers
                 
                 _context.Degrees.Update(oldScore);
                 await _context.SaveChangesAsync();
-                await _hub.Clients.All.SendAsync("StudentSendAnswerToAdmin", i);
+                await _hub.Clients.All.SendAsync("StudentSendAnswerToAdmin", model.Index);
                 return Ok(new { success = true ,score = oldScore.UserDegree });
             }
-            await _hub.Clients.All.SendAsync("StudentSendAnswerToAdmin", i);
+            await _hub.Clients.All.SendAsync("StudentSendAnswerToAdmin", model.Index);
             return Ok(new { success = false });
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+       
     }
 }

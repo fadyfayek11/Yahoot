@@ -78,7 +78,6 @@ connection.on("AdminSendQuestionId", function (qId, quizId) {
    
 });
 connection.on("AdminSendTheRightAnswer", function (index) {
-    debugger;
     for (var i = 0; i < 4; i++) {
         var name = "student-answer-" + i;
         document.getElementById(name).style.display = "none";
@@ -87,6 +86,15 @@ connection.on("AdminSendTheRightAnswer", function (index) {
     correct.style.display = "";
     var correctAnswer = document.getElementById("correct-answer");
     correctAnswer.innerText = index;
+});
+
+connection.on("StudentSendAnswerToAdmin", function (index) {
+    debugger;
+    var totalAnswer = document.getElementById("total-answer");
+    totalAnswer.firstChild.nodeValue = parseInt(totalAnswer.innerText) + 1;
+
+    var correctAnswer = document.getElementById(index+"-answer");
+    correctAnswer.firstChild.nodeValue = parseInt(correctAnswer.innerText) + 1;
 });
 
 document.getElementById("join-game").addEventListener("click", function (event) {

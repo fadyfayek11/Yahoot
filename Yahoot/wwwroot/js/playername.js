@@ -27,6 +27,9 @@ connection.on("sendJoinMessageToAdmin", function (message) {
 });
 connection.on("AdminSendQuestionId", function (qId, quizId) {
     if (qId !== 0) {
+        var correct = document.getElementById("correct-section");
+        correct.style.display = "none";
+
         var finishSection = document.getElementById("finish-section");
         finishSection.style.display = "none";
 
@@ -54,6 +57,8 @@ connection.on("AdminSendQuestionId", function (qId, quizId) {
         }
     } else {
         document.body.style.backgroundColor = "#46178f";
+        var correct = document.getElementById("correct-section");
+        correct.style.display = "none";
 
         var loader = document.getElementById("loader");
         loader.style.display = "none";
@@ -78,11 +83,10 @@ connection.on("AdminSendTheRightAnswer", function (index) {
         var name = "student-answer-" + i;
         document.getElementById(name).style.display = "none";
     }
-    var correctName = "student-answer-" + index;
-    var elem = document.getElementById(correctName);
-    elem.removeAttribute('onclick');
-    const correct = document.createElement("div");
-    correct.appendChild(elem);
+    var correct = document.getElementById("correct-section");
+    correct.style.display = "";
+    var correctAnswer = document.getElementById("correct-answer");
+    correctAnswer.innerText = index;
 });
 
 document.getElementById("join-game").addEventListener("click", function (event) {

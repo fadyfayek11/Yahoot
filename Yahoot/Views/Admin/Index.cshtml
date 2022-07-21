@@ -11,36 +11,24 @@
 <div class="sc-jtHMlw OpVJY"></div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-dark">Create New</a>
 </p>
+<hr/>
 
-<table class="table" style="color: white">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.QuizName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuizCode)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>           
-            <td>
-                @Html.DisplayFor(modelItem => item.QuizName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuizCode)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Id },new{@class="btn btn-info"}) |
-                @Html.ActionLink("Details", "Details", new {  id=item.Id  },new{@class="btn btn-light"}) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id  },new{@class="btn btn-danger"})
-            </td>
-        </tr>
+<div class="row col-12">
+
+@foreach (var item in Model)
+{
+    <div class="card col-4" style="width: 18rem; color: black; font-weight: bold; margin-right: 5%; text-align: center;box-shadow: 2px 3px 11px 1px black;">
+        <img class="card-img-top" src="~/quiz-icon.jpg" alt="Card image cap">
+        <hr/>
+        <div class="card-body">
+            <h5 class="card-title">@item.QuizName</h5>
+            <p class="card-text">Quiz Code : @item.QuizCode</p>
+            <a asp-action="Details" asp-controller="Admin" asp-route-id="@item.Id" class="btn" style="background-color: #D4AA00;color: white;font-weight: bold;">Edit</a>
+            <a asp-action="Details" asp-controller="Admin" asp-route-id="@item.Id" class="btn" style="background-color: #D30000;color: white;font-weight: bold;">Details</a>
+            <a asp-action="Details" asp-controller="Admin" asp-route-id="@item.Id" class="btn" style="background-color: #01AAD5;color: white;font-weight: bold;">Delete</a>
+        </div>
+    </div>
 }
-    </tbody>
-</table>
+</div>

@@ -52,7 +52,7 @@ namespace Yahoot.Controllers
                 if (question != null)  qId = question.Id;
                 CurrentQuestion = 0;
             }
-            var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0 ? q.Id == 1 : q.Id == questionId + 1);
+            var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0 ? q.Id == qId : q.Id > questionId);
            
 
             var total =  _context.Questions.Count(t => t.QuizId == id);
@@ -84,7 +84,7 @@ namespace Yahoot.Controllers
 
         public async Task<ActionResult> GetTopPlayers(int quizId)
         {
-            var players =  _context.Degrees.Include(x=>x.User).Where(q => q.QuizId == quizId).OrderBy(d=>d.Time).Take(15);
+            var players =  _context.Degrees.Include(x=>x.User).Where(q => q.QuizId == quizId).OrderBy(x=>x.UserDegree).ThenBy(d=>d.Time).Take(15);
             return View(players.Select(x=>new UserDegree(){Degree = x.UserDegree,Name = x.User.Name}));
         }
     }

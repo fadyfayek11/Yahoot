@@ -53,6 +53,7 @@ namespace Yahoot.Controllers
                 CurrentQuestion = 0;
             }
             var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0 ? q.Id == 1 : q.Id == questionId + 1);
+           
 
             var total =  _context.Questions.Count(t => t.QuizId == id);
             if (quizQuestion == null)
@@ -61,7 +62,9 @@ namespace Yahoot.Controllers
                 await _hub.Clients.All.SendAsync("AdminSendQuestionId", 0, id);
                 return View(new QuestionViewModel(0, 0, null, null, 0, 0));
             }
-            CurrentQuestion+=1;
+            TempData["questionId"] = quizQuestion.Id;
+            TempData["quizId"] = quizQuestion.QuizId;
+            CurrentQuestion +=1;
             var dto = new QuestionViewModel(quizQuestion.QuizId, quizQuestion.Id, quizQuestion.QuestionName,
                 quizQuestion.Answers,total,CurrentQuestion);
 
@@ -77,6 +80,12 @@ namespace Yahoot.Controllers
             var i = index.IndexOf(true);
             await _hub.Clients.All.SendAsync("AdminSendTheRightAnswer", answer[i].AnswerName);
             return Ok(new{success = true,data=$"{i}"});
+        }
+
+        public async Task<ActionResult> GetTopPlayers(int quizId)
+        {
+            var players =  _context.Degrees.Include(x=>x.User).Where(q => q.QuizId == quizId).OrderBy(d=>d.Time).Take(15);
+            return View(players.Select(x=>new UserDegree(){Degree = x.UserDegree,Name = x.User.Name}));
         }
     }
 }

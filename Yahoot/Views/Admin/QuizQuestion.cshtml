@@ -17,22 +17,19 @@
     <div>
         <h4>Question</h4>
         <hr />
-        <h1 class="text-center">No data yet</h1>
+        <h1 class="text-center">لا خلاص مفيش تاني</h1>
     </div>
 }
 else
 {
     <div class="row col-12">
-        <div class="col-9">
+        <div class="col-11">
             <h4>Question</h4>
             <h5 style="font-weight: bold;margin-left: 2%;">@Model.Current of @Model.Total</h5>
         </div>
-        <div class="col-3">
-            @*next question*@
-            <a onclick="startTimer()" class="sc-gWHgXt dziOkl enter-button__Button-sc-3mpvij-0 cnNgKW" style="font-size: 28px !important; background-color: #605ccd; color: white;" asp-action="QuizQuestion" asp-route-questionId="@Model?.QuestionId">Next</a>
-           
+        <div class="col-1">
             @*next grades-board*@
-            <a class="sc-gWHgXt dziOkl enter-button__Button-sc-3mpvij-0 cnNgKW" style="font-size: 28px !important; background-color: #605ccd; color: white;display: none" asp-action="QuizQuestion" asp-route-questionId="@Model?.QuestionId">Next</a>
+            <a class="sc-gWHgXt dziOkl enter-button__Button-sc-3mpvij-0 cnNgKW" style="font-size: 28px !important; background-color: #605ccd; color: white" asp-action="GetTopPlayers" asp-route-quizId="@Model?.QuizId">Next</a>
         </div>
         <hr/>
     </div>

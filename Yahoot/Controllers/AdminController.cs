@@ -84,7 +84,7 @@ namespace Yahoot.Controllers
 
         public async Task<ActionResult> GetTopPlayers(int quizId)
         {
-            var players =  _context.Degrees.Include(x=>x.User).Where(q => q.QuizId == quizId).OrderBy(x=>x.UserDegree).ThenBy(d=>d.Time).Take(15);
+            var players =  _context.Degrees.Include(x=>x.User).Where(q => q.QuizId == quizId).OrderByDescending(x=>x.UserDegree).ThenBy(d=>d.Time).Take(15);
             return View(players.Select(x=>new UserDegree(){Degree = x.UserDegree,Name = x.User.Name}));
         }
     }

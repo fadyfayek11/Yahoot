@@ -68,7 +68,7 @@ namespace Yahoot.Controllers
             var dto = new QuestionViewModel(quizQuestion.QuizId, quizQuestion.Id, quizQuestion.QuestionName,
                 quizQuestion.Answers,total,CurrentQuestion);
 
-            await _hub.Clients.All.SendAsync("AdminSendQuestionId", qId == 0 ? questionId + 1 : qId, id);
+            await _hub.Clients.All.SendAsync("AdminSendQuestionId", quizQuestion.Id, id);
             return View(dto);
         }
         

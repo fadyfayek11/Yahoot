@@ -52,7 +52,7 @@ namespace Yahoot.Controllers
                 if (question != null)  qId = question.Id;
                 CurrentQuestion = 0;
             }
-            var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && questionId == 0 ? q.Id == qId : q.Id > questionId);
+            var quizQuestion = await _context.Questions.AsNoTracking().Include(q => q.Answers).FirstOrDefaultAsync(q => q.QuizId == id && (questionId == 0 ? q.Id == qId : q.Id > questionId));
            
 
             var total =  _context.Questions.Count(t => t.QuizId == id);
